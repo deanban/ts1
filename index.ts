@@ -130,3 +130,36 @@ function fullName2(person: Person) {
 console.log(fullName2(p2));
 
 //classes and access modifiers
+class Employee {
+  public emploName: string;
+
+  constructor(name: string) {
+    this.emploName = name;
+  }
+
+  greet(): string | null {
+    if (!!this.emploName) return `Good evening ${this.emploName}`;
+    return null;
+  }
+}
+
+let emp1 = new Employee('some sucker');
+console.log(emp1.greet());
+
+//inheritance
+class Manager extends Employee {
+  protected managerName: string;
+  constructor(managerName: string) {
+    super(managerName);
+    this.managerName = managerName;
+  }
+
+  delegate(employee: string): string | null {
+    if (!!this.managerName)
+      return `${this.managerName} is delegating task to ${employee}`;
+    return null;
+  }
+}
+
+let manager = new Manager('Some Fuckface');
+console.log(manager.delegate(emp1.emploName));
